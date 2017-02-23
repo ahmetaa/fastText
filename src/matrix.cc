@@ -58,10 +58,11 @@ void Matrix::zero() {
 }
 
 void Matrix::uniform(real a) {
-  std::minstd_rand rng(1);
-  std::uniform_real_distribution<> uniform(-a, a);
+/*  std::minstd_rand rng(1);
+  std::uniform_real_distribution<> uniform(-a, a);*/
   for (int64_t i = 0; i < (m_ * n_); i++) {
-    data_[i] = uniform(rng);
+    //data_[i] = uniform(rng);
+    data_[i] = 0.1;
   }
 }
 

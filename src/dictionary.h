@@ -34,7 +34,7 @@ struct entry {
 
 class Dictionary {
   private:
-    static const int32_t MAX_VOCAB_SIZE = 30000000;
+    static const int32_t MAX_VOCAB_SIZE = 10000000;
     static const int32_t MAX_LINE_SIZE = 1024;
 
     int32_t find(const std::string&) const;
@@ -66,7 +66,7 @@ class Dictionary {
     const std::vector<int32_t>& getNgrams(int32_t) const;
     const std::vector<int32_t> getNgrams(const std::string&) const;
     void computeNgrams(const std::string&, std::vector<int32_t>&) const;
-    uint32_t hash(const std::string& str) const;
+    int32_t hash(const std::string& str) const;
     void add(const std::string&);
     bool readWord(std::istream&, std::string&) const;
     void readFromFile(std::istream&);

@@ -255,9 +255,14 @@ void FastText::trainThread(int32_t threadId) {
   int64_t localTokenCount = 0;
   std::vector<int32_t> line, labels;
   while (tokenCount < args_->epoch * ntokens) {
+    int32_t i = dict_->getLine(ifs, line, labels, model.rng);
+    if(i==0) {
+      continue;
+    }
+    localTokenCount += i;
     real progress = real(tokenCount) / (args_->epoch * ntokens);
     real lr = args_->lr * (1.0 - progress);
-    localTokenCount += dict_->getLine(ifs, line, labels, model.rng);
+
     if (args_->model == model_name::sup) {
       dict_->addNgrams(line, args_->wordNgrams);
       supervised(model, lr, line, labels);
